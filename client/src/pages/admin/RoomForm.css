@@ -1,0 +1,54 @@
+.room-form {
+  padding: 20px;
+}
+
+.room-form h1 {
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.room-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-common{
+  margin-bottom: 0.8rem;
+}
+
+.room-form form label {
+  margin-bottom: 5px;
+}
+
+.room-form form input,
+.room-form form select,
+.room-form form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.room-form form button {
+  padding: 1rem 2rem;
+  color: white;
+  background-color: black;
+  border: none;
+  font-size: medium;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  &:hover{
+    background-color: #333;
+    transform: scale(1.05);
+  }
+}
+.air-conditioning-container{
+  display: flex;
+  gap: 3rem;
+  padding: 1rem;
+}
+
+.AC, .NonAC{
+  width: min-content !important;
+}

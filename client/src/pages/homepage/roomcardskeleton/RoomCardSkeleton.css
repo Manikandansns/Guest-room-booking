@@ -1,0 +1,126 @@
+/* RoomCardSkeleton.css */
+
+/* Room Card Styles */
+.skeleton-room-card {
+    border-radius: 9px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f4f5f7;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .skeleton-room-card:hover {
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.2), 
+      0 0 20px rgba(255, 255, 255, 0.7), 
+      0 0 30px rgba(255, 255, 255, 0.5);
+    transform: translateY(-5px);
+  }
+  
+  /* skeleton-room Info Styles */
+  .skeleton-room-info {
+    border-radius: 9px;
+  }
+  
+  /* Image Container */
+  .skeleton-room-image-container {
+    width: 300px;
+    height: 300px;
+    background-color: #e0e0e0;
+    border-radius: 9px 9px 0 0;
+    transition: background-color 0.3s ease;
+  }
+  .skeleton-room-description-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .ratings-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .image-skeleton{
+    width: 300px;
+    height: 300px;
+  }
+  
+  /* skeleton-room Description Styles */
+  .skeleton-room-description-container {
+    padding: 1.2rem;
+    background-color: #f4f5f7;
+    border-radius: 0 0 9px 9px;
+  }
+  
+  /* Skeleton Loading State */
+  .skeleton {
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 400% 100%;
+    border-radius: 4px;
+    animation: shimmer 2.5s infinite, glow 3s infinite alternate; /* Slowed down the animations */
+    transition: background-color 0.3s ease;
+  }
+  
+  .skeleton-image {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .skeleton-text {
+    height: 20px;
+  }
+  
+  .skeleton-title {
+    width: 70%;
+    height: 28px;
+  }
+  
+  .skeleton-type {
+    width: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .skeleton-price {
+    width: 30%;
+    height: 24px;
+  }
+  
+  .skeleton-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  
+  /* Shimmer Effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -400% 0;
+    }
+    100% {
+      background-position: 400% 0;
+    }
+  }
+  
+  /* Glow Effect */
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+    100% {
+      box-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.8), 
+        0 0 50px rgba(255, 255, 255, 0.6);
+    }
+  }
+  
+  /* Hover Glow Effect for Skeleton Elements */
+  .skeleton-room-card:hover .skeleton {
+    background-color: #f0f0f0;
+    box-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.8), 
+      0 0 40px rgba(255, 255, 255, 0.7), 
+      0 0 60px rgba(255, 255, 255, 0.6);
+  }
+  

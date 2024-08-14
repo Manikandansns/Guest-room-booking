@@ -1,0 +1,30 @@
+.room-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 1rem 2rem;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.filter-group div label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.filter-group div label input {
+  margin-right: 5px;
+}

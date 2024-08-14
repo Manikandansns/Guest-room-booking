@@ -1,0 +1,58 @@
+.filters {
+  background-color: #fff;
+  padding: 0.7rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 81px;
+  z-index: 1000;
+  transition: box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+.filters.sticky {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+select:optional{
+  padding:2rem;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+.filter-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-group select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.anchor{
+  display: flex;
+  align-items: center;
+  color: black;
+}
+.drawer{
+  color: black !important;
+}

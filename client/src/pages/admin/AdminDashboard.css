@@ -1,0 +1,124 @@
+.admin-dashboard {
+}
+
+.admin-nav-wrapper{
+  display: flex;
+  align-items: center;
+  position: fixed;
+  background-color: white;
+  width: -webkit-fill-available;
+  padding: 1.7rem 2.4rem;
+  justify-content: space-between;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.197);
+}
+
+.admin-title{
+  font-size: xx-large;
+  font-weight: 500;
+}
+
+.admin-nav-btn{
+  display: flex;
+  align-items: center;
+}
+
+.admin-container{
+  margin: 0 2rem;
+  padding-top: 7.8rem;
+}
+
+.company-name{
+  padding-top: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.add-room-btn{
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    font-size: medium;
+    margin-right: 1rem;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    &:hover{
+      background-color: #333;
+      transform: scale(1.05);
+    }
+}
+
+.log-out{
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  font-size: medium;
+  margin-right: 1rem;
+  border: 2px solid black;
+  border-radius: 8px;
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+
+.admin-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-dashboard table th, .admin-dashboard table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.admin-dashboard table th {
+  background-color: #f4f4f4;
+}
+
+/* .admin-dashboard button {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+} */
+
+.edit-btn, .delete-btn{
+  padding: 0.5rem 1rem;
+  margin: 5px;
+  font-weight: 500;
+  font-size: medium;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  &:hover{
+    background-color: #333;
+    transform: scale(1.05);
+  }
+}
+
+.edit-btn{
+  background-color: rgb(2, 200, 2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  &:hover{
+    background-color: rgb(4, 163, 4);
+    transform: scale(1.05);
+  }
+}
+.delete-btn{
+  background-color: rgb(241, 36, 36);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  &:hover{
+    background-color: #a70303;
+    transform: scale(1.05);
+  }
+}
+
+.welcome-note{
+  font-weight: 500;
+  font-size: x-large;
+}
+
+.company-name{
+  font-weight: 400;
+  font-size: large;
+  color: rgb(101, 98, 98);
+}
