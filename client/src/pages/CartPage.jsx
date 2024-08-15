@@ -74,8 +74,9 @@ const CartPage = () => {
 
       {/* Bill Card */}
       {cart.length > 0 && (
+        <div className="bill-card-wrapper">
         <div className="bill-card">
-          <h2>Bill Summary</h2>
+          <h2 className='bill-heading'>Bill Summary</h2>
           <ul className="bill-item-list">
             {cart.map((item, index) => (
               <li key={index} className="bill-item">
@@ -94,6 +95,7 @@ const CartPage = () => {
           >
             Proceed to Pay
           </button>
+        </div>
         </div>
       )}
     </div>

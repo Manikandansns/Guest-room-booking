@@ -304,7 +304,7 @@
 
 .cart-item-image {
   width: 150px;
-  height: 100px;
+  height: 150px;
   object-fit: cover;
   margin-right: 20px;
   border-radius: 8px;
@@ -356,10 +356,22 @@
 
 /* bill-card */
 
+.bill-card-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+
+  margin: 3rem;
+}
+.bill-heading{
+  margin-bottom: 2rem;
+}
 .bill-card {
-  background-color: #f8f9fa;
   padding: 20px;
+  background-color: white;
   border-radius: 10px;
+  position: absolute;
+  position: sticky;
   margin-top: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -385,6 +397,7 @@
 
 .bill-room-name {
   font-weight: 500;
+  margin-right: 3rem;
 }
 
 .bill-room-price {

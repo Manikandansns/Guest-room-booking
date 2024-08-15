@@ -210,7 +210,7 @@ const RoomForm = () => {
           </div>
           <div className="form-section">
             <div className="form-common">
-              <label>Price</label>
+              <label>Price<small style={{fontWeight:"lighter"}}>/month</small></label>
               <input type="number" name="pricing" value={room.pricing} onChange={handleChange} required />
             </div>
             <div className="form-common">
