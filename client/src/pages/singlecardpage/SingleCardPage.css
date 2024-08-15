@@ -120,3 +120,21 @@
 .per-day{
   font-size: medium;
 }
+/* SingleCardPage.css */
+
+.alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 11000; 
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dialog-overlay {
+  z-index: 1000;
+}
+
+.single-room-wrapper {
+  position: relative;
+  z-index: 900; /* Ensure content has a lower z-index than the overlay and alert */
+}

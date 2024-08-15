@@ -4,6 +4,8 @@ import { FaBars } from 'react-icons/fa';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import liked from '../../assets/liked.svg'
 
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
@@ -25,9 +27,19 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');  
+    localStorage.removeItem('token'); 
+    localStorage.removeItem('userId');
+    localStorage.removeItem('cart'); 
     navigate('/');  
 };
+
+const handleFavorite =()=>{
+  navigate('/favorites')
+}
+
+const handleCart = () =>{
+  navigate('/cart')
+}
 
   return (
     <nav className={color ? 'navbar navbar-bg' : 'navbar'}>
@@ -43,6 +55,12 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="nav-btn">
+          <button className="nav-fav-btn" onClick={handleFavorite}>
+          <img className="nav-fav" src={liked} />
+          </button>
+        <button className="nav-add-to-cart-btn" onClick={handleCart}>
+        <ShoppingCartIcon/>
+        </button>
           <div className="profile-wrapper">
             <AccountCircleIcon />
             <Link to='/' className='link' onClick={handleLogout}>Logout</Link>

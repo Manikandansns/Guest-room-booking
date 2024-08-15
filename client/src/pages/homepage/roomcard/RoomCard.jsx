@@ -1,18 +1,45 @@
-import React, { useEffect, useState } from "react";
-import "./RoomCard.css";
-import star from "../../../assets/star.svg";
+import React from 'react';
+import './RoomCard.css';
+import star from '../../../assets/star.svg';
+import like from '../../../assets/like.svg';
+import liked from '../../../assets/liked.svg';
+import { useFavorites } from '../../FavoritesContext'; 
 
 const RoomCard = ({ room, onClick }) => {
-  const [imageSrc, setImageSrc] = useState("");
+  const [imageSrc, setImageSrc] = React.useState("");
+  const [likeGlow, setLikeGlow] = React.useState(like);
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
 
-  useEffect(() => {
+  React.useEffect(() => {
+    // Set image source if photos are available
     if (room.photos && room.photos.length > 0) {
       setImageSrc(`http://localhost:5000/${room.photos[0]}`);
     }
   }, [room.photos]);
 
+  // Determine if the room is a favorite
+  const isFavorite = favorites.some(item => item._id === room._id);
+
+  // Update the button icon based on favorite state
+  React.useEffect(() => {
+    setLikeGlow(isFavorite ? liked : like);
+  }, [isFavorite]);
+
+  // Toggle favorite status
+  const handleLikeClick = (event) => {
+    event.stopPropagation(); // Prevent click event from bubbling up
+    if (isFavorite) {
+      removeFavorite(room._id);
+    } else {
+      addFavorite(room);
+    }
+  };
+
   return (
-    <div className="room-card" onClick={onClick}>
+    <div className="room-card" onClick={() => onClick(room)}> {/* Pass room to onClick */}
+      <div className="like-button" onClick={handleLikeClick}>
+        <img src={likeGlow} alt="Like Button" className="like-icon"/>
+      </div>
       <div className="room-info">
         <div className="room-image-container">
           {imageSrc && (

@@ -14,10 +14,13 @@ import SingleCardPage from './pages/singlecardpage/SingleCardPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import RoomForm from './pages/admin/RoomForm';
 import CartPage from './pages/CartPage';
+import FavoritesPage from './pages/FavoritesPage';
+import { FavoritesProvider } from './pages/FavoritesContext';
 function App() {
 
   return (
     <>
+    <FavoritesProvider>
     <BrowserRouter>
             <Routes>                
                 <Route path="/" element={<ValidationPage/>} />
@@ -40,8 +43,10 @@ function App() {
                 <Route path="/admin/edit-room/:id" element={<RoomForm />} />
 
                 <Route path="/cart" element={<CartPage/>} />
+                <Route path="/favorites" element={<FavoritesPage/>} />
             </Routes>
         </BrowserRouter>
+        </FavoritesProvider>
     </>
   )
 }

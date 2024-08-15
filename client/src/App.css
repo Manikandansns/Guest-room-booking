@@ -269,3 +269,187 @@
   z-index: 1000;
   width: 300px; /* Adjust as needed */
 }
+
+/* Cart */
+
+.cart-wrapper{
+  
+}
+
+.cart-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: center;
+  padding-top: 8rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.197);
+}
+.cart-price{
+  color: #317ce7;
+  font-weight: 600;
+}
+
+.cart-per-day{
+  font-size: small;
+  color: gray;
+}
+
+.cart-item-image {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 8px;
+}
+
+.cart-item-details {
+  flex: 1;
+  width: 280px;
+}
+
+.remove-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.remove-button:hover {
+  background-color: #c0392b;
+}
+.cart-title-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.cart-rating-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.cart-title{
+  color: #317ce7;
+}
+
+.cart-roomtype{
+  font-size: medium;
+  color: gray;
+}
+
+.admin-nav-logo{
+  display: flex;
+  align-items: center;
+}
+
+/* bill-card */
+
+.bill-card {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bill-item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bill-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.bill-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.bill-room-name {
+  font-weight: 500;
+}
+
+.bill-room-price {
+  color: #28a745;
+}
+
+.proceed-to-pay-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.proceed-to-pay-button:hover {
+  background-color: #218838;
+}
+
+.cart-back-button {
+  background-color: transparent;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: x-large;
+  margin-right: 20px;
+}
+
+/* Favorites */
+
+.fav-nav-wrapper{
+  display: flex;
+  align-items: center;
+  position: fixed;
+  background-color: white;
+  width: -webkit-fill-available;
+  padding: 1.7rem 2.4rem;
+  justify-content: space-between;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.197);
+  z-index: 100;
+}
+
+.fav-title{
+  font-size: xx-large;
+  font-weight: 500;
+}
+
+.fav-nav-btn{
+  display: flex;
+  align-items: center;
+}
+.favorites-list{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-top: 8rem;
+}
+
+option{
+  padding: 2rem;
+}

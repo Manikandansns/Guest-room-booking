@@ -85,52 +85,58 @@ const AdminDashboard = () => {
         navigate('/');  
     };
 
-    const handleNavigate = () =>{
-        navigate('/homepage')
-    }
-
     return (
         <div className="admin-dashboard">
-        <div className="admin-nav-wrapper">
-            <div className="admin-nav-logo">
-            <h1 className='admin-title'>Admin Dashboard</h1>
+            <div className="admin-nav-wrapper">
+                <div className="admin-nav-logo">
+                    <h1 className='admin-title'>Admin Dashboard</h1>
+                </div>
+                <div className="admin-nav-btn">           
+                    <button className='add-room-btn' onClick={() => navigate('/admin/add-room')}>Add Room</button>
+                    <button className='log-out' onClick={handleLogout}>Logout</button>
+                </div>
             </div>
-            <div className="admin-nav-btn">           
-            <button className='add-room-btn' onClick={() => navigate('/admin/add-room')}>Add Room</button>
-            <button className='log-out' onClick={handleLogout}>Logout</button>
-            </div>
-        </div>
-          <div className="admin-container">
-            {error && <p>{error}</p>}
-            {admin && <h2 className='welcome-note'>Welcome, {admin.name}</h2>}
-            {company && <h3 className='company-name'>Company: {company.companyName}</h3>}
+            <div className="admin-container">
+                {error && <p>{error}</p>}
+                {admin && <h2 className='welcome-note'>Welcome, {admin.name}</h2>}
+                {company && <h3 className='company-name'>Company: {company.companyName}</h3>}
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Room Type</th>
-                        <th>Price</th>
-                        <th>Availability</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rooms.map(room => (
-                        <tr key={room._id}>
-                            <td>{room.description}</td>
-                            <td>{room.roomType}</td>
-                            <td>${room.pricing}</td>
-                            <td>{room.availability}</td>
-                            <td>
-                                <button className='edit-btn' onClick={() => handleEdit(room._id)}>Edit</button>
-                                <button className='delete-btn' onClick={() => handleDelete(room._id)}>Delete</button>
-                            </td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th> {/* Added Image Column */}
+                            <th>Description</th>
+                            <th>Room Type</th>
+                            <th>Price</th>
+                            <th>Availability</th>
+                            <th>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <button className="next-btn" onClick={handleNavigate}>Next</button>
+                    </thead>
+                    <tbody>
+                        {rooms.map(room => (
+                            <tr key={room._id}>
+                                <td>
+                                    {/* Assuming room.photos[0] contains the image path */}
+                                    {room.photos && room.photos.length > 0 && (
+                                        <img
+                                            src={`http://localhost:5000/${room.photos[0]}`}
+                                            alt={room.description}
+                                            className="room-image"
+                                        />
+                                    )}
+                                </td>
+                                <td>{room.description}</td>
+                                <td>{room.roomType}</td>
+                                <td>${room.pricing}</td>
+                                <td>{room.availability}</td>
+                                <td>
+                                    <button className='edit-btn' onClick={() => handleEdit(room._id)}>Edit</button>
+                                    <button className='delete-btn' onClick={() => handleDelete(room._id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     );

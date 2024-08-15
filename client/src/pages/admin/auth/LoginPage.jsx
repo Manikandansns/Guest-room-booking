@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { SuccessAlert, ErrorAlert } from '../../../components/Alert'; // Adjust path as needed
+import { SuccessAlert, ErrorAlert } from '../../../components/Alert'; 
 import '../../../App.css';
 
 const UserLoginPage = () => {

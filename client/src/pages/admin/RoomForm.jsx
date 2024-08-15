@@ -35,7 +35,6 @@ const RoomForm = () => {
           return;
         }
 
-        // Fetch Admin and Company Details
         const detailsResponse = await axios.get('http://localhost:5000/api/admin/details', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -113,7 +112,6 @@ const RoomForm = () => {
     e.preventDefault();
     const formData = new FormData();
 
-    // Append room details to formData
     Object.keys(room).forEach(key => {
       if (key === 'location') {
         Object.keys(room.location).forEach(locKey => {
@@ -124,12 +122,10 @@ const RoomForm = () => {
       }
     });
 
-    // Append photos to formData
     Array.from(photos).forEach(photo => {
       formData.append('photos', photo);
     });
 
-    // Append adminId
     if (adminId) {
       formData.append('adminId', adminId);
     } else {
@@ -152,11 +148,9 @@ const RoomForm = () => {
       };
 
       if (id) {
-        // Update existing room
         await axios.put(`http://localhost:5000/api/room/${id}`, formData, config);
         navigate(`/admin/dashboard`);
       } else {
-        // Create new room
         await axios.post('http://localhost:5000/api/room', formData, config);
         navigate(`/admin/dashboard`);
       }
@@ -173,63 +167,69 @@ const RoomForm = () => {
   return (
     <div className="room-form">
       <h1>{id ? 'Edit Room' : 'Add Room'}</h1>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Room Type</label>
-          <select name="roomType" value={room.roomType} onChange={handleChange} required>
-            <option value="">Select Room Type</option>
-            <option value="1BHK">1BHK</option>
-            <option value="2BHK">2BHK</option>
-            <option value="3BHK">3BHK</option>
-          </select>
-        </div>
-        <div>
-          <label>Price</label>
-          <input type="number" name="pricing" value={room.pricing} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Availability</label>
-          <select name="availability" value={room.availability} onChange={handleChange} required>
-            <option value="available">Available</option>
-            <option value="not-available">Not Available</option>
-          </select>
-        </div>
-        <div>
-          <label>Description</label>
-          <textarea name="description" value={room.description} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Country</label>
-          <input type="text" name="country" value={room.location.country} onChange={handleLocationChange} required />
-        </div>
-        <div>
-          <label>State</label>
-          <input type="text" name="state" value={room.location.state} onChange={handleLocationChange} required />
-        </div>
-        <div>
-          <label>District</label>
-          <input type="text" name="district" value={room.location.district} onChange={handleLocationChange} required />
-        </div>
-        <div>
-          <label>Address</label>
-          <input type="text" name="address" value={room.location.address} onChange={handleLocationChange} required />
-        </div>
-        <div>
-          <label>Rating</label>
-          <select name="rating" value={room.rating} onChange={handleChange} required>
-            {[1, 2, 3, 4, 5].map(r => (
-              <option key={r} value={r}>{r}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label>Review</label>
-          <textarea name="review" value={room.review} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Photos</label>
-          <input className='upload-input' type="file" name="photos" multiple onChange={handlePhotosChange} />
+        <div className="split-container">
+          <div className="form-section">
+            <div className="form-common">
+              <label>Room Type</label>
+              <select name="roomType" value={room.roomType} onChange={handleChange} required>
+                <option value="">Select Room Type</option>
+                <option value="1BHK">1BHK</option>
+                <option value="2BHK">2BHK</option>
+                <option value="3BHK">3BHK</option>
+              </select>
+            </div>
+            <div className="form-common">
+              <label>Availability</label>
+              <select name="availability" value={room.availability} onChange={handleChange} required>
+                <option value="available">Available</option>
+                <option value="not-available">Not Available</option>
+              </select>
+            </div>
+            <div className="form-common">
+              <label>Description</label>
+              <textarea name="description" value={room.description} onChange={handleChange} required />
+            </div>
+            <div className="form-common">
+              <label>Country</label>
+              <input type="text" name="country" value={room.location.country} onChange={handleLocationChange} required />
+            </div>
+            <div className="form-common">
+              <label>State</label>
+              <input type="text" name="state" value={room.location.state} onChange={handleLocationChange} required />
+            </div>
+            <div className="form-common">
+              <label>District</label>
+              <input type="text" name="district" value={room.location.district} onChange={handleLocationChange} required />
+            </div>
+            <div className="form-common">
+              <label>Address</label>
+              <input type="text" name="address" value={room.location.address} onChange={handleLocationChange} required />
+            </div>
+          </div>
+          <div className="form-section">
+            <div className="form-common">
+              <label>Price</label>
+              <input type="number" name="pricing" value={room.pricing} onChange={handleChange} required />
+            </div>
+            <div className="form-common">
+              <label>Rating</label>
+              <select name="rating" value={room.rating} onChange={handleChange} required>
+                {[1, 2, 3, 4, 5].map(r => (
+                  <option key={r} value={r}>{r}</option>
+                ))}
+              </select>
+            </div>
+            <div className="form-common">
+              <label>Review</label>
+              <textarea name="review" value={room.review} onChange={handleChange} />
+            </div>
+            <div className="form-common">
+              <label>Photos</label>
+              <input className='upload-input' type="file" name="photos" multiple onChange={handlePhotosChange} />
+            </div>
+          </div>
         </div>
         <button type="submit">{id ? 'Update Room' : 'Add Room'}</button>
       </form>

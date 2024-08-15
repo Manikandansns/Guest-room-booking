@@ -1,5 +1,8 @@
 .room-form {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .room-form h1 {
@@ -10,14 +13,16 @@
 .room-form form {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
-.form-common{
+.form-common {
   margin-bottom: 0.8rem;
 }
 
 .room-form form label {
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .room-form form input,
@@ -27,6 +32,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .room-form form button {
@@ -38,17 +44,40 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  &:hover{
-    background-color: #333;
-    transform: scale(1.05);
-  }
-}
-.air-conditioning-container{
-  display: flex;
-  gap: 3rem;
-  padding: 1rem;
 }
 
-.AC, .NonAC{
-  width: min-content !important;
+.room-form form button:hover {
+  background-color: #333;
+  transform: scale(1.01);
+}
+
+.split-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.split-container .form-section {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.upload-input {
+  border: none;
+}
+
+.error-message {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+  }
+
+  .split-container .form-section {
+    min-width: 100%;
+  }
 }

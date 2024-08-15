@@ -122,7 +122,7 @@ export default function AnchorTemporaryDrawer({ filters, onFilterChange }) {
 
   return (
     <div style={{ color: "black" }}>
-      {['sort'].map((anchor) => (
+      {['filter'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <Drawer

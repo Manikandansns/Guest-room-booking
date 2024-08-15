@@ -1,91 +1,101 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import '../App.css';
+import star from '../assets/star.svg';
+import { useNavigate } from 'react-router-dom';
 
 const CartPage = () => {
-  const { state } = useLocation();
+  const [cart, setCart] = useState([]);
   const navigate = useNavigate();
-  
-  // Ensure room and dates are available in the state
-  const room = state?.room;
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [dates, setDates] = useState([startDate, endDate]);
 
-  if (!room) {
-    return <p>No room data available.</p>;
-  }
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const userId = localStorage.getItem('userId');
+    const userCart = storedCart.filter(item => item.userId === userId);
+    setCart(userCart);
+  }, []);
 
-  const handleProceedToPayment = async () => {
-    try {
-      const response = await axios.post('http://localhost:5000/api/cart/proceed-payment', {
-        roomId: room._id,
-        dates
-      });
-
-      if (response.data.success) {
-        navigate('/payment-success');
-      } else {
-        alert('Payment failed. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error processing payment:', error);
-      alert('Payment failed. Please try again.');
-    }
+  const handleRemoveItem = (index) => {
+    const updatedCart = cart.filter((_, i) => i !== index);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
-  const calculateTotalPrice = () => {
-    const nights = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
-    return nights * room.pricing;
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => total + item.pricing, 0);
+  };
+
+  const handleProceedToPay = () => {
+    navigate('/checkout'); // Navigate to the payment/checkout page
   };
 
   return (
-    <div className="cart-page">
-      <h1>Cart</h1>
-      <div className="cart-item">
-        <h2>{room.roomType}</h2>
-        <p><strong>Location:</strong> {`${room.location.address}, ${room.location.district}, ${room.location.state}, ${room.location.country}`}</p>
-        
-        <div className="date-picker">
-          <label>
-            <strong>Check-in:</strong>
-            <DatePicker 
-              selected={startDate}
-              onChange={(date) => {
-                setStartDate(date);
-                setDates([date, endDate]);
-              }}
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
-              dateFormat="yyyy/MM/dd"
-            />
-          </label>
-          
-          <label>
-            <strong>Check-out:</strong>
-            <DatePicker 
-              selected={endDate}
-              onChange={(date) => {
-                setEndDate(date);
-                setDates([startDate, date]);
-              }}
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
-              dateFormat="yyyy/MM/dd"
-            />
-          </label>
+    <div className='cart-wrapper'>
+      <div className="admin-nav-wrapper">
+        <div className="admin-nav-logo">
+          <h1 className='admin-title'>Cart</h1>
         </div>
-        
-        <p><strong>Check-in:</strong> {new Date(startDate).toLocaleDateString()}</p>
-        <p><strong>Check-out:</strong> {new Date(endDate).toLocaleDateString()}</p>
-        <p><strong>Total Price:</strong> ${calculateTotalPrice()}</p>
-        <button className="proceed-button" onClick={handleProceedToPayment}>Proceed to Payment</button>
+        <div className="admin-nav-btn">           
+          <button className='add-room-btn' onClick={() => navigate('/homepage')}>Add more Room</button>
+        </div>
       </div>
+      {cart.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <ul className='cart-container'>
+          {cart.map((item, index) => (
+            <li key={index} className="cart-item">
+              <img 
+                src={`http://localhost:5000/${item.photos[0]}`} 
+                alt={item.roomType} 
+                className="cart-item-image" 
+              />
+              <div className="cart-item-details">
+                <div className="cart-title-wrapper">
+                  <h3 className='cart-title'>{item.description}</h3>
+                  <div className="cart-rating-wrapper">
+                    <img className="" src={star} alt="Rating" />
+                    <p>{item.rating}</p>
+                  </div>
+                </div>
+                <p className='cart-roomtype'>{item.roomType}</p>
+                <p className='cart-location'>{item.location.district}, {item.location.state}, {item.location.country}</p>
+                <p><span className="cart-price">$ {item.pricing}</span><span className="cart-per-day"> /month</span></p>
+                <button 
+                  className="remove-button" 
+                  onClick={() => handleRemoveItem(index)}
+                >
+                  Remove
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Bill Card */}
+      {cart.length > 0 && (
+        <div className="bill-card">
+          <h2>Bill Summary</h2>
+          <ul className="bill-item-list">
+            {cart.map((item, index) => (
+              <li key={index} className="bill-item">
+                <span className="bill-room-name">{item.description}</span>
+                <span className="bill-room-price">$ {item.pricing}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="bill-total">
+            <span>Total Amount:</span>
+            <span>$ {calculateTotal()}</span>
+          </div>
+          <button 
+            className="proceed-to-pay-button" 
+            onClick={handleProceedToPay}
+          >
+            Proceed to Pay
+          </button>
+        </div>
+      )}
     </div>
   );
 };

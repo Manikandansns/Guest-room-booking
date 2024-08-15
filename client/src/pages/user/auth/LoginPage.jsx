@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { SuccessAlert, ErrorAlert } from '../../../components/Alert'; // Adjust path as needed
+import { SuccessAlert, ErrorAlert } from '../../../components/Alert';
 import '../../../App.css';
 
 const UserLoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [alertType, setAlertType] = useState(''); // To control which alert to show
-    const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
+    const [alertType, setAlertType] = useState(''); 
+    const [showAlert, setShowAlert] = useState(false); 
     const [alertMessage, setAlertMessage] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
             const response = await axios.post('http://localhost:5000/api/user/login', { email, password });
+
+            // Assuming response contains userId and token
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('userId', response.data.userId);
 
             // Set alert message and type for success
             setAlertType('success');
             setAlertMessage('Login successful!');
             setShowAlert(true);
 
-            // Hide alert after 5 seconds and navigate to homepage
+            // Hide alert after 2 seconds and navigate to homepage
             setTimeout(() => {
                 setShowAlert(false);
                 navigate('/homepage');
@@ -32,7 +35,7 @@ const UserLoginPage = () => {
             setAlertMessage('Invalid credentials');
             setShowAlert(true);
 
-            // Hide alert after 5 seconds
+            // Hide alert after 2 seconds
             setTimeout(() => {
                 setShowAlert(false);
             }, 2000);

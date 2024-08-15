@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../App.css';
-import { SuccessAlert, ErrorAlert } from '../../components/Alert'; // Adjust path as needed
+import { SuccessAlert, ErrorAlert } from '../../components/Alert'; 
 
 const CompanyPage = () => {
     const [companyName, setCompanyName] = useState('');

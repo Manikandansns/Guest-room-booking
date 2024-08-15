@@ -1,56 +1,77 @@
-*{
-  /* border: 2px solid red; */
-}
 .room-card {
+  position: relative; /* Make sure the like button is positioned relative to the card */
   border-radius: 0px 0px 9px 9px;
   display: flex;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #f4f5f7;
-  }
-  
-  .room-info {
-    border-radius: 0px 0px 9px 9px;
-    border-radius: 2px solid green;
-  }
-  .room-image-container{
-    width: 300px;
-    height: 300px;
-  }
-  .room-photo{
-    width: 100%;
-    height: 100%;
-  }
-  .room-description-container{
-    padding: 1.2rem;
-    background-color: #f4f5f7;
-    border-radius: 0px 0px 9px 9px;
-  }
-  .room-description-head{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .room-location{
-    text-transform: capitalize;
-    font-size: large;
-    font-weight: 600;
-  }
-  .ratings-wrapper{
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-  .room-type{
-    font-weight: 500;
-    font-size: medium;
-    color: rgb(93, 92, 92);
-  }
-  .price{
-    font-size: large;
-    font-weight: 600;
-  }
-  .room-title{
-    font-size: large;
-  }
-  
+}
+
+.like-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.like-icon {
+  width: 24px;
+  height: 24px; 
+}
+
+.room-info {
+  border-radius: 0px 0px 9px 9px;
+}
+
+.room-image-container {
+  width: 300px;
+  height: 300px;
+}
+
+.room-photo {
+  width: 100%;
+  height: 100%;
+}
+
+.room-description-container {
+  padding: 1.2rem;
+  background-color: #f4f5f7;
+  border-radius: 0px 0px 9px 9px;
+}
+
+.room-description-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.room-location {
+  text-transform: capitalize;
+  font-size: large;
+  font-weight: 600;
+}
+
+.ratings-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.room-type {
+  font-weight: 500;
+  font-size: medium;
+  color: rgb(93, 92, 92);
+}
+
+.price {
+  font-size: large;
+  font-weight: 600;
+}
+
+.room-title {
+  font-size: medium;
+  text-transform: lowercase;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
