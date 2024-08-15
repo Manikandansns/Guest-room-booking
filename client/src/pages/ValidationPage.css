@@ -29,10 +29,3 @@
       transform: scale(1.05);
     }
 }
-.iframe-wrapper{
-    border: 2px solid red;
-}
-common-container{
-    display: flex;
-    flex-wrap: wrap;
-}
