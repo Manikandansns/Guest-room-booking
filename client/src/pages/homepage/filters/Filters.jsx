@@ -78,8 +78,8 @@ const Filters = ({ filters, onFilterChange }) => {
               valueLabelDisplay="auto"
               getAriaValueText={valuetext}
               min={0}
-              max={100000}
-              step={10000}
+              max={20000}
+              step={1000}
             />
           </Box>
         </div>

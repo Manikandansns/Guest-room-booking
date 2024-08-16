@@ -89,7 +89,7 @@ const AdminDashboard = () => {
         <div className="admin-dashboard">
             <div className="admin-nav-wrapper">
                 <div className="admin-nav-logo">
-                    <h1 className='admin-title'>Admin Dashboard</h1>
+                    <h1 className='admin-title'>Host Dashboard</h1>
                 </div>
                 <div className="admin-nav-btn">           
                     <button className='add-room-btn' onClick={() => navigate('/admin/add-room')}>Add Room</button>

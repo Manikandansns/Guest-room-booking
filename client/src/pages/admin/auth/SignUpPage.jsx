@@ -44,7 +44,7 @@ const UserSignUpPage = () => {
     return (
         <div className='signup-wrapper'>
             <div className="signup-container">
-                <h2 className='signup-heading'>Admin Registration</h2>
+                <h2 className='signup-heading'>Host Registration</h2>
                 <input className='signup-name' type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                 <input className='signup-email' type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <input className='signup-phone' type="text" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} />

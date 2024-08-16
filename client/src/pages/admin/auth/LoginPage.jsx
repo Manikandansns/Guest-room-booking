@@ -42,7 +42,7 @@ const UserLoginPage = () => {
     return (
         <div className='login-wrapper'>
             <div className="login-container">
-                <h2 className='login-heading'>Admin Login</h2>
+                <h2 className='login-heading'>Host Login</h2>
                 <input className='login-email' type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <input className='login-password' type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button className='login-btn' onClick={handleLogin}>Login</button>

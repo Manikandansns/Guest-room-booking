@@ -12,7 +12,7 @@ const RoomList = () => {
   const [filters, setFilters] = useState({
     roomType: '',
     minPrice: 0,
-    maxPrice: 100000,
+    maxPrice: 20000,
     availability: '',
     location: '',
     rating: '',
