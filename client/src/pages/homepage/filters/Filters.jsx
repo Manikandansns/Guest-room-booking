@@ -5,10 +5,6 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import AnchorTemporaryDrawer from '../../Drawer';
 
-function valuetext(value) {
-  return `${value}°C`;
-}
-
 const Filters = ({ filters, onFilterChange }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [value, setValue] = useState([filters.minPrice, filters.maxPrice]);
@@ -76,7 +72,6 @@ const Filters = ({ filters, onFilterChange }) => {
               value={value}
               onChange={handleSliderChange}
               valueLabelDisplay="auto"
-              getAriaValueText={valuetext}
               min={0}
               max={20000}
               step={1000}

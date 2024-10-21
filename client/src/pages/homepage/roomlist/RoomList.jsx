@@ -21,6 +21,8 @@ const RoomList = () => {
   const [loading, setLoading] = useState(true);
   const [selectedRoom, setSelectedRoom] = useState(null); // State to handle the selected room
 
+  console.log(filteredRooms)
+
   // Fetch rooms data from the API
   useEffect(() => {
     const fetchRooms = async () => {

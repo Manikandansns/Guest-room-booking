@@ -1,62 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SingleCardPage.css';
 import star from '../../assets/star.svg';
 import { Dialog, Button } from '@mui/material';
-import { SuccessAlert, ErrorAlert } from '../../components/Alert'; // Adjust path as needed
+import { SuccessAlert, ErrorAlert } from '../../components/Alert';
 
 const SingleCardPage = ({ room, open, onClose }) => {
   const [alertType, setAlertType] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [isInCart, setIsInCart] = useState(false);
 
-  const handleCart = () => {
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const userId = localStorage.getItem('userId');
+    const existingCartItem = cart.find(item => item.roomId === room._id && item.userId === userId);
+
+    setIsInCart(!!existingCartItem); 
+  }, [room._id]);
+
+  const handleCartToggle = () => {
     try {
       const userId = localStorage.getItem('userId');
       if (!userId) {
         console.error('User ID not found in localStorage');
         return;
       }
-  
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      
-      const newCartItem = {
-        userId, // Store the userId with each cart item
-        roomId: room._id,
-        roomType: room.roomType,
-        description: room.description,
-        location: room.location,
-        pricing: room.pricing,
-        rating: room.rating,
-        photos: room.photos,
-      };
-      
-      cart.push(newCartItem);
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingCartItemIndex = cart.findIndex(item => item.roomId === room._id && item.userId === userId);
+
+      if (existingCartItemIndex !== -1) {
+        // If the item is already in the cart, remove it
+        cart.splice(existingCartItemIndex, 1);
+        setAlertType('success');
+        setAlertMessage('Room removed from cart successfully!');
+        setIsInCart(false);
+      } else {
+        // If the item is not in the cart, add it
+        const newCartItem = {
+          userId,
+          roomId: room._id,
+          roomType: room.roomType,
+          description: room.description,
+          location: room.location,
+          pricing: room.pricing,
+          rating: room.rating,
+          photos: room.photos,
+        };
+
+        cart.push(newCartItem);
+        setAlertType('success');
+        setAlertMessage('Room added to cart successfully!');
+        setIsInCart(true);
+      }
+
       localStorage.setItem('cart', JSON.stringify(cart));
-  
-      // Set success alert
-      setAlertType('success');
-      setAlertMessage('Room added to cart successfully!');
       setShowAlert(true);
-  
-      // Hide alert after 2 seconds and close dialog
+
       setTimeout(() => {
         setShowAlert(false);
-        onClose();
+        if (isInCart) onClose(); 
       }, 2000);
     } catch (error) {
-      // Set error alert
       setAlertType('error');
-      setAlertMessage('Failed to add room to cart.');
+      setAlertMessage('Failed to update cart.');
       setShowAlert(true);
-  
-      // Hide alert after 2 seconds
+
       setTimeout(() => {
         setShowAlert(false);
       }, 2000);
     }
   };
-  
-  
 
   return (
     <>
@@ -90,8 +104,18 @@ const SingleCardPage = ({ room, open, onClose }) => {
                 <strong>Reviews:</strong> {room.review}
               </p>
             </div>
-            <Button variant="contained" color="primary" onClick={handleCart}>
-              Add to Cart
+            <Button 
+              variant="contained" 
+              // color={isInCart ? "secondary" : "primary"} 
+              sx={{
+    backgroundColor: isInCart ? "orangered" : "primary.main",
+    '&:hover': {
+      backgroundColor: isInCart ? "#d04a00" : "primary.dark",
+    },
+  }} 
+              onClick={handleCartToggle}
+            >
+              {isInCart ? "Remove from Cart" : "Add to Cart"}
             </Button>
             <button className='close-btn' onClick={onClose}>X</button>
           </div>
