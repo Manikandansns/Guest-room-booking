@@ -18,7 +18,7 @@ const ValidationPage = () => {
         <div className='common-container'>
         <div className='validation-wrapper'>
        
-            <h2 className='valid-heading'>Login Portal</h2>
+            <h2 className='valid-heading'>Login Portals</h2>
             <div className="valid-btn-wrapper">
             <button onClick={goToAdminLogin} className='admin-login'>Login as Host</button>
             <button onClick={goToCustomerLogin} className='customer-login'>Login as Customer</button>

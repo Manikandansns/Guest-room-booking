@@ -16,12 +16,14 @@ import RoomForm from './pages/admin/RoomForm';
 import CartPage from './pages/CartPage';
 import FavoritesPage from './pages/FavoritesPage';
 import { FavoritesProvider } from './pages/FavoritesContext';
+import FloatingButton from './components/floating/Floating';
 function App() {
 
   return (
     <>
     <FavoritesProvider>
     <BrowserRouter>
+    <FloatingButton/>
             <Routes>                
                 <Route path="/" element={<ValidationPage/>} />
 
